@@ -83,11 +83,11 @@ public:
         }
         return nullptr;
     }
-
+// update by id hoga 
     void updateProduct(int id, string name, string category, double price, int quantity, double margin) {
         Product* product = findProduct(id);
         if (product) {
-            // Adjust the revenue and profit before updating
+            // change revenue and profit before updating
             double oldRevenue = product->getPrice() * product->getQuantity();
             totalRevenue -= oldRevenue;
             totalProfit -= oldRevenue * (product->getMargin() / 100);
@@ -196,7 +196,7 @@ int main() {
     char choice;
 
     cout << "-------------------------------------------" << endl;
-    cout << "khatta-Inventory Management System -" << endl;
+    cout << "e-khata-Inventory Management System -" << endl;
     cout << "-------------------------------------------" << endl;
 
     do {
