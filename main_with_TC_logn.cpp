@@ -5,7 +5,7 @@
 #include <fstream>
 #include <limits>
 #include <algorithm>
-#include <map> // <-- Include the map header
+#include <map> 
 
 using namespace std;
 
@@ -39,20 +39,18 @@ public:
 
 class Inventory {
 private:
-    // CHANGED: Use std::map for O(log n) search, insert, and delete operations.
-    // The key is the product ID (int), and the value is the Product object.
     map<int, Product> products;
     double totalRevenue = 0;
     double totalProfit = 0;
 
 public:
     void addProduct(Product product) {
-        // O(log n) check for existence
+        // O(log n)
         if (products.count(product.getId())) {
             cout << "Id already exists." << endl;
             return;
         }
-        // O(log n) insertion
+        // O(log n) for insertion
         products[product.getId()] = product;
         double revenue = product.getPrice() * product.getQuantity();
         totalRevenue += revenue;
@@ -61,7 +59,7 @@ public:
     }
 
     void removeProduct(int id) {
-        // O(log n) find operation
+        // O(log n) for find operation
         auto it = products.find(id);
 
         if (it != products.end()) {
@@ -70,7 +68,7 @@ public:
             totalRevenue -= revenue;
             totalProfit -= revenue * (p.getMargin() / 100);
 
-            // O(log n) erase operation
+            // O(log n) for erase operation
             products.erase(it);
             cout << "Product removed successfully." << endl;
         } else {
@@ -79,7 +77,7 @@ public:
     }
 
     Product* findProduct(int id) {
-        // O(log n) find operation
+        // O(log n)for  find operation
         auto it = products.find(id);
         if (it != products.end()) {
             return &it->second; // Return pointer to the product in the map
@@ -88,7 +86,7 @@ public:
     }
 
     void updateProduct(int id, string name, string category, double price, int quantity, double margin) {
-        Product* product = findProduct(id); // Uses the efficient O(log n) find
+        Product* product = findProduct(id);
         if (product) {
             // Adjust the revenue and profit before updating
             double oldRevenue = product->getPrice() * product->getQuantity();
@@ -101,7 +99,7 @@ public:
             product->setQuantity(quantity);
             product->setMargin(margin);
 
-            // Recalculate revenue and profit with updated values
+            
             double newRevenue = price * quantity;
             totalRevenue += newRevenue;
             totalProfit += newRevenue * (margin / 100);
@@ -116,7 +114,7 @@ public:
         if (products.empty()) {
             cout << "No products in inventory." << endl;
         } else {
-            // Iterate through the map to print products
+                
             for (const auto& pair : products) {
                 const Product& product = pair.second;
                 cout << "-------------------------------------------" << endl;
@@ -140,7 +138,7 @@ public:
             return;
         }
 
-        // Iterate through the map
+        
         for (const auto& pair : products) {
             const Product& product = pair.second;
             file << product.getId() << ","
@@ -199,8 +197,6 @@ void clearInput() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// The main function remains unchanged as it only interacts with the public
-// interface of the Inventory class, which has been kept consistent.
 int main() {
     Inventory inventory;
     char choice;
@@ -328,7 +324,7 @@ int main() {
             }
 
             case '8':
-                // The printProducts function already shows the totals at the end
+                
                 inventory.printProducts();
                 break;
 
