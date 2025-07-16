@@ -118,7 +118,7 @@ public:
                 cout << "ID: " << product.getId() << endl;
                 cout << "Name: " << product.getName() << endl;
                 cout << "Category: " << product.getCategory() << endl;
-                cout << "Price: $" << product.getPrice() << endl;
+                cout << "Price: Rs." << product.getPrice() << endl;
                 cout << "Quantity: " << product.getQuantity() << endl;
                 cout << "Margin: " << product.getMargin() << "%" << endl;
                 cout << "-------------------------------------------" << endl;
@@ -196,7 +196,7 @@ int main() {
     char choice;
 
     cout << "-------------------------------------------" << endl;
-    cout << "khatta-Inventory Management System - Interactive" << endl;
+    cout << "khatta-Inventory Management System -" << endl;
     cout << "-------------------------------------------" << endl;
 
     do {
